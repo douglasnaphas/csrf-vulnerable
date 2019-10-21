@@ -5,6 +5,8 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
+import { Configs } from "./Configs";
+
 function App() {
   const [url, setUrl] = React.useState("initial url");
   return (
