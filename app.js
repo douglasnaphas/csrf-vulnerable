@@ -13,6 +13,10 @@ app.post('/', function(req, res) {
   });
 });
 
+app.get("/cookie", function(req, res){
+  res.send({"Output": "You have received a cookie"});
+})
+
 
 // Export your Express configuration so that it can be consumed by the Lambda handler
 module.exports = app
