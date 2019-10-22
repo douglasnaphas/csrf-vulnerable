@@ -1,5 +1,10 @@
+const allowRequestingOrigin = require("./allowRequestingOrigin");
+const allowCredentials = require("./allowCredentials");
+
 const funcArray = [
   function(req, res, next) {
+    allowCredentials,
+    allowRequestingOrigin,
     res.cookie(
       "CSRF-Token",
       (() => {
