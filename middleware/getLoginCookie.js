@@ -1,4 +1,10 @@
+const allowAllOrigins = require("./allowAllOrigins");
+const allowRequestingOrigin = require("./allowRequestingOrigin");
+const allowCredentials = require("./allowCredentials");
+
 const funcArray = [
+  allowCredentials,
+  allowRequestingOrigin,
   function(req, res, next) {
     console.log("this was written to stdout abcXYZ123jj");
     next();
