@@ -1,6 +1,6 @@
 const funcArray = [
   function(req, res, next) {
-    res.cookie("Login-Token", (() => {
+    res.cookie("CSRF-Token", (() => {
       let cook = '';
       const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
       for(let i = 0; i < 6; i++) {
