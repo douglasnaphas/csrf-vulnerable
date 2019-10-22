@@ -1,7 +1,7 @@
 import { Configs } from "../Configs";
 
-async function getCookie() {
-  const getCookie = new URL(`/cookie`, Configs.apiUrl());
+async function getLoginCookie() {
+  const getCookie = new URL(`/login-cookie`, Configs.apiUrl());
   const response = await fetch(getCookie);
   const data = await response.json();
   const status = response.status;
@@ -11,4 +11,4 @@ async function getCookie() {
   };
 }
 
-export { getCookie };
+export { getLoginCookie };
