@@ -1,5 +1,9 @@
 const funcArray = [
   function(req, res, next) {
+    console.log("this was written to stdout abcXYZ123jj");
+    next();
+  },
+  function(req, res, next) {
     res.cookie(
       "Login-Token",
       (() => {

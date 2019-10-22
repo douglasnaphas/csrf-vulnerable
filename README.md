@@ -8,6 +8,8 @@ bypasses for Cross-Site Request Forgery.
 Run the backend from AWS Cloud9
 -------------------------------
 
+Be sure to run `npm install` on your Cloud9 instance.
+
     sed 's/NODE_ENV: production/NODE_ENV: development/' ./template.yml > ./dev-template.yml
     sam local start-api --template ./dev-template.yml --port 3002 --host <HOST_IP>
     
