@@ -7,7 +7,7 @@ const funcArray = [
   allowRequestingOrigin,
   function(req, res, next) {
     console.log("this was written to stdout abcXYZ123jj");
-    next();
+    return next();
   },
   function(req, res, next) {
     res.cookie(
@@ -21,10 +21,10 @@ const funcArray = [
         return cook;
       })()
     );
-    next();
+    return next();
   },
   function(req, res) {
-    res.send({ Output: "You have received a cookie" });
+    return res.send({ Output: "You have received a cookie" });
   }
 ];
 

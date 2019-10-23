@@ -16,10 +16,10 @@ const funcArray = [
         return cook;
       })()
     );
-    next();
+    return next();
   },
   function(req, res) {
-    res.send({ Output: "You have received a cookie" });
+    return res.send({ Output: "You have received a cookie" });
   }
 ];
 
