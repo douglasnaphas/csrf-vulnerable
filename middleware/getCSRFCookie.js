@@ -3,10 +3,10 @@ const allowCredentials = require("./allowCredentials");
 const setSameSite = require("./setSameSite");
 
 const funcArray = [
+  allowCredentials,
+  allowRequestingOrigin,
+  setSameSite,
   function(req, res, next) {
-    allowCredentials,
-    allowRequestingOrigin,
-    setSameSite,
     res.cookie(
       "CSRF-Token",
       (() => {
