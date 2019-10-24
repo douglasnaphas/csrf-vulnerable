@@ -1,15 +1,18 @@
-const allowAllOrigins = require("./allowAllOrigins");
 const allowRequestingOrigin = require("./allowRequestingOrigin");
 const allowCredentials = require("./allowCredentials");
+const setSameSite = require("./setSameSite");
 
 const funcArray = [
   allowCredentials,
   allowRequestingOrigin,
+  setSameSite,
   function(req, res, next) {
     console.log("this was written to stdout abcXYZ123jj");
     return next();
   },
   function(req, res, next) {
+    const cookieOptions = res.locals.samesite ? 
+      {sameSite: "lax"} : {};
     res.cookie(
       "Login-Token",
       (() => {
@@ -19,7 +22,8 @@ const funcArray = [
           cook += alphabet.charAt(Math.floor(Math.random() * alphabet.length));
         }
         return cook;
-      })()
+      })(),
+      cookieOptions
     );
     return next();
   },
