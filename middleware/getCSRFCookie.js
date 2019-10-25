@@ -7,6 +7,8 @@ const funcArray = [
   allowRequestingOrigin,
   setSameSite,
   function(req, res, next) {
+    const cookieOptions = res.locals.samesite ? 
+      {sameSite: "lax"} : {};
     res.cookie(
       "CSRF-Token",
       (() => {
@@ -16,7 +18,8 @@ const funcArray = [
           cook += alphabet.charAt(Math.floor(Math.random() * alphabet.length));
         }
         return cook;
-      })()
+      })(),
+      cookieOptions
     );
     return next();
   },
