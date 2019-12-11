@@ -22,7 +22,8 @@ app.post(["/", "/api"], function(req, res) {
     Output: "Hello World!"
   });
 });
-
+app.get(/\/(api\/)?login-cookie/, getLoginCookie);
+app.get(/\/(api\/)?cookie/, getLoginCookie);
 app.use(cookieParser());
 app.use(logCookies);
 app.use(checkLoginCookie);
@@ -32,11 +33,7 @@ app.use(/\/(api\/)?xo/, allowRequestingOrigin);
 app.get(/\/(api\/)?do-nothing/, doNothing);
 app.post(/\/(api\/)?do-nothing/, doNothing);
 
-app.get(/\/(api\/)?login-cookie/, getLoginCookie);
-
 app.get(/\/(api\/)?csrf-cookie/, getCSRFCookie);
-
-app.get(/\/(api\/)?cookie/, getLoginCookie);
 
 app.post("/cookies-no-csrf-token", postCookiesNoCSRFToken);
 
