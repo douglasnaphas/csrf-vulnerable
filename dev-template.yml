@@ -362,6 +362,44 @@ Resources:
           Properties:
             Path: /api/noxo/do-nothing
             Method: get
+  PostCheckStdHdrs:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs12.x
+      Timeout: 30
+      Environment:
+        Variables:
+          NODE_ENV: development
+      Role:
+        Fn::GetAtt:
+          - LambdaExecutionRole
+          - Arn
+      Events:
+        GetEvent:
+          Type: Api
+          Properties:
+            Path: /api/noxo/check-std-hdrs
+            Method: post
+  GetCheckStdHdrs:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs12.x
+      Timeout: 30
+      Environment:
+        Variables:
+          NODE_ENV: development
+      Role:
+        Fn::GetAtt:
+          - LambdaExecutionRole
+          - Arn
+      Events:
+        GetEvent:
+          Type: Api
+          Properties:
+            Path: /api/noxo/check-std-hdrs
+            Method: get
   LambdaExecutionRole:
     Description: Creating service role in IAM for AWS Lambda
     Type: AWS::IAM::Role

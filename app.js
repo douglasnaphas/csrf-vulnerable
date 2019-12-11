@@ -11,6 +11,7 @@ const allowWhitelistedOrigins = require("./middleware/allowWhitelistedOrigins");
 const preflightHandler = require("./middleware/preflightHandler");
 const allowCredentials = require("./middleware/allowCredentials");
 const allowHeaders = require("./middleware/allowHeaders");
+const checkStdHdrs = require("./middleware/checkStdHdrs");
 
 var app = express();
 
@@ -38,6 +39,9 @@ app.use(checkLoginCookie);
 
 app.get(/\/(api\/)?do-nothing/, doNothing);
 app.post(/\/(api\/)?do-nothing/, doNothing);
+
+app.get(/\/api\/noxo\/check-std-hdrs/, checkStdHdrs);
+app.post(/\/api\/noxo\/check-std-hdrs/, checkStdHdrs);
 
 app.get(/\/(api\/)?csrf-cookie/, getCSRFCookie);
 
