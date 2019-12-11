@@ -7,12 +7,7 @@ const funcArray = [
   allowRequestingOrigin,
   setSameSite,
   function(req, res, next) {
-    console.log("this was written to stdout abcXYZ123jj");
-    return next();
-  },
-  function(req, res, next) {
-    const cookieOptions = res.locals.samesite ? 
-      {sameSite: "lax"} : {};
+    const cookieOptions = res.locals.samesite ? { sameSite: "lax" } : {};
     res.cookie(
       "Login-Token",
       (() => {
