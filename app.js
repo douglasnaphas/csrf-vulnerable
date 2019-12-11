@@ -10,7 +10,7 @@ app.use(cookieParser());
 
 app.get(["/", "/api"], function(req, res) {
   res.send({
-    Output: "Hello World!"
+    Output: "Hello World!!"
   });
 });
 
