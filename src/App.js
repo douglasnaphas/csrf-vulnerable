@@ -80,14 +80,7 @@ function App() {
                     </Button>
                   </div>
                 </TableCell>
-                <TableCell>
-                  <Checkbox
-                    checked={CSRFSameSite}
-                    onChange={event => {
-                      setCSRFSameSite(event.target.checked);
-                    }}
-                  ></Checkbox>
-                </TableCell>
+                <TableCell></TableCell>
               </TableRow>
             </TableBody>
           </Table>
