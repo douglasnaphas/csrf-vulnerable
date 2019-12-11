@@ -12,6 +12,8 @@ import Typography from "@material-ui/core/Typography";
 import { getLoginCookie } from "./lib/getLoginCookie";
 import { getCSRFCookie } from "./lib/getCSRFCookie";
 import "./App.css";
+import Link from "@material-ui/core/Link";
+import { Configs } from "./Configs";
 
 function App() {
   const [url, setUrl] = React.useState("initial url");
@@ -86,6 +88,21 @@ function App() {
                       setCSRFSameSite(event.target.checked);
                     }}
                   ></Checkbox>
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </Paper>
+        <br />
+        <Paper className="White-paper" style={{ minWidth: "400px" }}>
+          <Table>
+            <TableBody>
+              <TableRow>
+                <TableCell>Unprotected endpoint:</TableCell>
+                <TableCell>
+                  <Link style={{ cursor: "pointer" }}>
+                    {new URL("/api/do-nothing", Configs.apiUrl())["href"]}
+                  </Link>
                 </TableCell>
               </TableRow>
             </TableBody>
