@@ -24,6 +24,29 @@ Globals:
       Role: !Ref CodeDeployRole
 
 Resources:
+  ApiHelloWorld:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs12.x
+      Environment:
+        Variables:
+          NODE_ENV: production
+      Role:
+        Fn::GetAtt:
+          - LambdaExecutionRole
+          - Arn
+      Events:
+        GetEvent:
+          Type: Api
+          Properties:
+            Path: /api
+            Method: get
+        PostEvent:
+          Type: Api
+          Properties:
+            Path: /api
+            Method: post
   HelloWorld:
     Type: AWS::Serverless::Function
     Properties:
@@ -47,6 +70,24 @@ Resources:
           Properties:
             Path: /
             Method: post
+  ApiGetCookie:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs12.x
+      Environment:
+        Variables:
+          NODE_ENV: production
+      Role:
+        Fn::GetAtt:
+          - LambdaExecutionRole
+          - Arn
+      Events:
+        GetEvent:
+          Type: Api
+          Properties:
+            Path: /api/cookie
+            Method: get
   GetCookie:
     Type: AWS::Serverless::Function
     Properties:
@@ -64,6 +105,24 @@ Resources:
           Type: Api
           Properties:
             Path: /cookie
+            Method: get
+  ApiGetLoginCookie:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs12.x
+      Environment:
+        Variables:
+          NODE_ENV: production
+      Role:
+        Fn::GetAtt:
+          - LambdaExecutionRole
+          - Arn
+      Events:
+        GetEvent:
+          Type: Api
+          Properties:
+            Path: /api/login-cookie
             Method: get
   GetLoginCookie:
     Type: AWS::Serverless::Function
@@ -83,6 +142,24 @@ Resources:
           Properties:
             Path: /login-cookie
             Method: get
+  ApiGetCSRFCookie:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs12.x
+      Environment:
+        Variables:
+          NODE_ENV: production
+      Role:
+        Fn::GetAtt:
+          - LambdaExecutionRole
+          - Arn
+      Events:
+        GetEvent:
+          Type: Api
+          Properties:
+            Path: /api/csrf-cookie
+            Method: get
   GetCSRFCookie:
     Type: AWS::Serverless::Function
     Properties:
@@ -101,6 +178,24 @@ Resources:
           Properties:
             Path: /csrf-cookie
             Method: get
+  ApiPostCookiesNoCSRFToken:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs12.x
+      Environment:
+        Variables:
+          NODE_ENV: production
+      Role:
+        Fn::GetAtt:
+          - LambdaExecutionRole
+          - Arn
+      Events:
+        GetEvent:
+          Type: Api
+          Properties:
+            Path: /api/cookies-no-csrf-token
+            Method: post
   PostCookiesNoCSRFToken:
     Type: AWS::Serverless::Function
     Properties:
