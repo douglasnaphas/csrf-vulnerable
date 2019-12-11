@@ -1,20 +1,20 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
-import Checkbox from '@material-ui/core/Checkbox';
-import Paper from '@material-ui/core/Paper';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
-import { getLoginCookie } from './lib/getLoginCookie';
-import { getCSRFCookie } from './lib/getCSRFCookie';
-import './App.css';
+import React from "react";
+import Button from "@material-ui/core/Button";
+import Checkbox from "@material-ui/core/Checkbox";
+import Paper from "@material-ui/core/Paper";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import TextField from "@material-ui/core/TextField";
+import Typography from "@material-ui/core/Typography";
+import { getLoginCookie } from "./lib/getLoginCookie";
+import { getCSRFCookie } from "./lib/getCSRFCookie";
+import "./App.css";
 
 function App() {
-  const [url, setUrl] = React.useState('initial url');
+  const [url, setUrl] = React.useState("initial url");
   const [loginSameSite, setLoginSameSite] = React.useState(false);
   const [CSRFSameSite, setCSRFSameSite] = React.useState(false);
   const [checkedState, setCheckedState] = React.useState({
@@ -35,7 +35,7 @@ function App() {
       </Typography>
       <br />
       <div>
-        <Paper className="White-paper" style={{ minWidth: '400px' }}>
+        <Paper className="White-paper" style={{ minWidth: "400px" }}>
           <Table>
             <TableHead>
               <TableRow>
