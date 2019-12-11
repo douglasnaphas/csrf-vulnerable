@@ -30,7 +30,7 @@ function App() {
       <Typography variant="h2" component="h1">
         Vulnemort
       </Typography>
-      <Typography variant="h3" component="h3">
+      <Typography variant="h3" component="h3" style={{ padding: "8px" }}>
         A site vulnerable to Cross-Site Request Forgery
       </Typography>
       <br />
