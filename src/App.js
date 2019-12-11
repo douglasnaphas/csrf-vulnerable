@@ -91,10 +91,20 @@ function App() {
             <TableBody>
               <TableRow>
                 <TableCell>
-                  Endpoint, no CSRF defenses, requires login:
+                  Endpoint, no CSRF defenses, allows all origins, requires
+                  login:
                 </TableCell>
                 <TableCell>
-                  {new URL("/api/do-nothing", Configs.apiUrl())["href"]}
+                  {new URL("/api/xo/do-nothing", Configs.apiUrl())["href"]}
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>
+                  Endpoint, no CSRF defenses, allows whitelisted origins,
+                  requires login:
+                </TableCell>
+                <TableCell>
+                  {new URL("/api/noxo/do-nothing", Configs.apiUrl())["href"]}
                 </TableCell>
               </TableRow>
             </TableBody>

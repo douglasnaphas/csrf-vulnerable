@@ -6,6 +6,8 @@ const postCookiesNoCSRFToken = require("./middleware/postCookiesNoCSRFToken");
 const doNothing = require("./middleware/doNothing");
 const logCookies = require("./middleware/logCookies");
 const checkLoginCookie = require("./middleware/checkLoginCookie");
+const allowRequestingOrigin = require("./middleware/allowRequestingOrigin");
+const allowWhitelistedOrigins = require("./middleware/allowWhitelistedOrigins");
 
 var app = express();
 
@@ -24,6 +26,8 @@ app.post(["/", "/api"], function(req, res) {
 app.use(cookieParser());
 app.use(logCookies);
 app.use(checkLoginCookie);
+app.use(/\/(api\/)?noxo/, allowWhitelistedOrigins);
+app.use(/\/(api\/)?xo/, allowRequestingOrigin);
 
 app.get(/\/(api\/)?do-nothing/, doNothing);
 app.post(/\/(api\/)?do-nothing/, doNothing);

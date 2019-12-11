@@ -286,6 +286,82 @@ Resources:
           Properties:
             Path: /do-nothing
             Method: post
+  PostApiXoDoNothing:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs12.x
+      Timeout: 30
+      Environment:
+        Variables:
+          NODE_ENV: development
+      Role:
+        Fn::GetAtt:
+          - LambdaExecutionRole
+          - Arn
+      Events:
+        GetEvent:
+          Type: Api
+          Properties:
+            Path: /api/xo/do-nothing
+            Method: post
+  GetApiXoDoNothing:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs12.x
+      Timeout: 30
+      Environment:
+        Variables:
+          NODE_ENV: development
+      Role:
+        Fn::GetAtt:
+          - LambdaExecutionRole
+          - Arn
+      Events:
+        GetEvent:
+          Type: Api
+          Properties:
+            Path: /api/xo/do-nothing
+            Method: get
+  PostApiNoxoDoNothing:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs12.x
+      Timeout: 30
+      Environment:
+        Variables:
+          NODE_ENV: development
+      Role:
+        Fn::GetAtt:
+          - LambdaExecutionRole
+          - Arn
+      Events:
+        GetEvent:
+          Type: Api
+          Properties:
+            Path: /api/noxo/do-nothing
+            Method: post
+  GetApiNoxoDoNothing:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs12.x
+      Timeout: 30
+      Environment:
+        Variables:
+          NODE_ENV: development
+      Role:
+        Fn::GetAtt:
+          - LambdaExecutionRole
+          - Arn
+      Events:
+        GetEvent:
+          Type: Api
+          Properties:
+            Path: /api/noxo/do-nothing
+            Method: get
   LambdaExecutionRole:
     Description: Creating service role in IAM for AWS Lambda
     Type: AWS::IAM::Role
