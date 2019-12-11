@@ -12,7 +12,6 @@ import Typography from "@material-ui/core/Typography";
 import { getLoginCookie } from "./lib/getLoginCookie";
 import { getCSRFCookie } from "./lib/getCSRFCookie";
 import "./App.css";
-import Link from "@material-ui/core/Link";
 import { Configs } from "./Configs";
 
 function App() {
@@ -100,9 +99,7 @@ function App() {
               <TableRow>
                 <TableCell>Unprotected endpoint:</TableCell>
                 <TableCell>
-                  <Link style={{ cursor: "pointer" }}>
-                    {new URL("/api/do-nothing", Configs.apiUrl())["href"]}
-                  </Link>
+                  {new URL("/api/do-nothing", Configs.apiUrl())["href"]}
                 </TableCell>
               </TableRow>
             </TableBody>
