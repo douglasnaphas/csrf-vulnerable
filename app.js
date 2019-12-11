@@ -5,10 +5,9 @@ const getCSRFCookie = require("./middleware/getCSRFCookie");
 const postCookiesNoCSRFToken = require("./middleware/postCookiesNoCSRFToken");
 const doNothing = require("./middleware/doNothing");
 const logCookies = require("./middleware/logCookies");
+const checkLoginCookie = require("./middleware/checkLoginCookie");
 
 var app = express();
-
-app.use(cookieParser());
 
 app.get(["/", "/api"], function(req, res) {
   res.send({
@@ -22,7 +21,9 @@ app.post(["/", "/api"], function(req, res) {
   });
 });
 
+app.use(cookieParser());
 app.use(logCookies);
+app.use(checkLoginCookie);
 
 app.get(/\/(api\/)?do-nothing/, doNothing);
 app.post(/\/(api\/)?do-nothing/, doNothing);

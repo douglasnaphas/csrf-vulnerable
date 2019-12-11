@@ -97,7 +97,9 @@ function App() {
           <Table>
             <TableBody>
               <TableRow>
-                <TableCell>Unprotected endpoint:</TableCell>
+                <TableCell>
+                  Endpoint, no CSRF defenses, requires login:
+                </TableCell>
                 <TableCell>
                   {new URL("/api/do-nothing", Configs.apiUrl())["href"]}
                 </TableCell>
