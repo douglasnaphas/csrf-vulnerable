@@ -13,6 +13,10 @@ import { getLoginCookie } from "./lib/getLoginCookie";
 import { getCSRFCookie } from "./lib/getCSRFCookie";
 import "./App.css";
 import { Configs } from "./Configs";
+import GitHubIcon from "@material-ui/icons/GitHub";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import IconButton from "@material-ui/core/IconButton";
+import AppBar from "@material-ui/core/AppBar";
 
 function App() {
   const [url, setUrl] = React.useState("initial url");
@@ -26,92 +30,113 @@ function App() {
       sameSite: false
     }
   });
+  const theme = createMuiTheme({
+    palette: {
+      primary: { main: "#040213" }
+    }
+  });
   return (
-    <div className="App">
-      <Typography variant="h2" component="h1">
-        Vulnemort
-      </Typography>
-      <Typography variant="h3" component="h3" style={{ padding: "8px" }}>
-        A site vulnerable to Cross-Site Request Forgery
-      </Typography>
-      <br />
-      <div>
-        <Paper className="White-paper" style={{ minWidth: "400px" }}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell></TableCell>
-                <TableCell>SameSite</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              <TableRow>
-                <TableCell>
-                  <div>
-                    <Button
-                      variant="contained"
-                      onClick={() => {
-                        getLoginCookie(loginSameSite);
-                      }}
-                    >
-                      Get a login cookie
-                    </Button>
-                  </div>
-                </TableCell>
-                <TableCell>
-                  <Checkbox
-                    checked={loginSameSite}
-                    onChange={event => {
-                      setLoginSameSite(event.target.checked);
-                    }}
-                  ></Checkbox>
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>
-                  <div>
-                    <Button
-                      variant="contained"
-                      onClick={() => {
-                        getCSRFCookie(CSRFSameSite);
-                      }}
-                    >
-                      Get a CSRF cookie
-                    </Button>
-                  </div>
-                </TableCell>
-                <TableCell></TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </Paper>
+    <MuiThemeProvider theme={theme}>
+      <div className="App">
+        <AppBar style={{ textAlign: "right" }}>
+          <IconButton
+            href="https://github.com/douglasnaphas/csrf-vulnerable"
+            style={{
+              width: "30px",
+              marginRight: "-10px"
+            }}
+          >
+            <GitHubIcon
+              fontSize="large"
+              style={{ padding: "10px", color: "white", marginRight: "-10px" }}
+            ></GitHubIcon>
+          </IconButton>
+        </AppBar>
+        <Typography variant="h2" component="h1">
+          Vulnemort
+        </Typography>
+        <Typography variant="h3" component="h3" style={{ padding: "8px" }}>
+          A site vulnerable to Cross-Site Request Forgery
+        </Typography>
         <br />
-        <Paper className="White-paper" style={{ minWidth: "400px" }}>
-          <Table>
-            <TableBody>
-              <TableRow>
-                <TableCell>
-                  Endpoint, no CSRF defenses, allows all origins, requires
-                  login:
-                </TableCell>
-                <TableCell>
-                  {new URL("/api/xo/do-nothing", Configs.apiUrl())["href"]}
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>
-                  Endpoint, no CSRF defenses, allows whitelisted origins,
-                  requires login:
-                </TableCell>
-                <TableCell>
-                  {new URL("/api/noxo/do-nothing", Configs.apiUrl())["href"]}
-                </TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </Paper>
+        <div>
+          <Paper className="White-paper" style={{ minWidth: "400px" }}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell></TableCell>
+                  <TableCell>SameSite</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <TableRow>
+                  <TableCell>
+                    <div>
+                      <Button
+                        variant="contained"
+                        onClick={() => {
+                          getLoginCookie(loginSameSite);
+                        }}
+                      >
+                        Get a login cookie
+                      </Button>
+                    </div>
+                  </TableCell>
+                  <TableCell>
+                    <Checkbox
+                      checked={loginSameSite}
+                      onChange={event => {
+                        setLoginSameSite(event.target.checked);
+                      }}
+                    ></Checkbox>
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>
+                    <div>
+                      <Button
+                        variant="contained"
+                        onClick={() => {
+                          getCSRFCookie(CSRFSameSite);
+                        }}
+                      >
+                        Get a CSRF cookie
+                      </Button>
+                    </div>
+                  </TableCell>
+                  <TableCell></TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </Paper>
+          <br />
+          <Paper className="White-paper" style={{ minWidth: "400px" }}>
+            <Table>
+              <TableBody>
+                <TableRow>
+                  <TableCell>
+                    Endpoint, no CSRF defenses, allows all origins, requires
+                    login:
+                  </TableCell>
+                  <TableCell>
+                    {new URL("/api/xo/do-nothing", Configs.apiUrl())["href"]}
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>
+                    Endpoint, no CSRF defenses, allows whitelisted origins,
+                    requires login:
+                  </TableCell>
+                  <TableCell>
+                    {new URL("/api/noxo/do-nothing", Configs.apiUrl())["href"]}
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </Paper>
+        </div>
       </div>
-    </div>
+    </MuiThemeProvider>
   );
 }
 
