@@ -114,21 +114,20 @@ function App() {
           </Paper>
           <br />
           <Paper className="White-paper" style={{ minWidth: "400px" }}>
+            <Typography variant="h5" component="h3">
+              Endpoints, login cookie required
+            </Typography>
             <Table>
               <TableBody>
                 <TableRow>
-                  <TableCell>
-                    Endpoint, no CSRF defenses, allows all origins, requires
-                    login:
-                  </TableCell>
+                  <TableCell>No CSRF defenses, allows all origins:</TableCell>
                   <TableCell>
                     {new URL("/api/xo/do-nothing", Configs.apiUrl())["href"]}
                   </TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell>
-                    Endpoint, no CSRF defenses, allows whitelisted origins,
-                    requires login:
+                    No CSRF defenses, allows whitelisted origins:
                   </TableCell>
                   <TableCell>
                     {new URL("/api/noxo/do-nothing", Configs.apiUrl())["href"]}

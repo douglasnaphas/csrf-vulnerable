@@ -8,6 +8,9 @@ const logCookies = require("./middleware/logCookies");
 const checkLoginCookie = require("./middleware/checkLoginCookie");
 const allowRequestingOrigin = require("./middleware/allowRequestingOrigin");
 const allowWhitelistedOrigins = require("./middleware/allowWhitelistedOrigins");
+const preflightHandler = require("./middleware/preflightHandler");
+const allowCredentials = require("./middleware/allowCredentials");
+const allowHeaders = require("./middleware/allowHeaders");
 
 var app = express();
 
@@ -16,19 +19,22 @@ app.get(["/", "/api"], function(req, res) {
     Output: "Hello World!!"
   });
 });
-
 app.post(["/", "/api"], function(req, res) {
   res.send({
     Output: "Hello World!"
   });
 });
+
+app.use(/\/(api\/)?noxo/, allowWhitelistedOrigins);
+app.use(/\/(api\/)?xo/, allowRequestingOrigin);
+app.use(/\/.*/, allowCredentials);
+app.use(/\/.*/, allowHeaders);
+app.options(/\/.*/, preflightHandler);
 app.get(/\/(api\/)?login-cookie/, getLoginCookie);
 app.get(/\/(api\/)?cookie/, getLoginCookie);
 app.use(cookieParser());
 app.use(logCookies);
 app.use(checkLoginCookie);
-app.use(/\/(api\/)?noxo/, allowWhitelistedOrigins);
-app.use(/\/(api\/)?xo/, allowRequestingOrigin);
 
 app.get(/\/(api\/)?do-nothing/, doNothing);
 app.post(/\/(api\/)?do-nothing/, doNothing);
