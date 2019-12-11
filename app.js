@@ -4,6 +4,7 @@ const getLoginCookie = require("./middleware/getLoginCookie");
 const getCSRFCookie = require("./middleware/getCSRFCookie");
 const postCookiesNoCSRFToken = require("./middleware/postCookiesNoCSRFToken");
 const doNothing = require("./middleware/doNothing");
+const logCookies = require("./middleware/logCookies");
 
 var app = express();
 
@@ -20,6 +21,8 @@ app.post(["/", "/api"], function(req, res) {
     Output: "Hello World!"
   });
 });
+
+app.use(logCookies);
 
 app.get(/\/(api\/)?do-nothing/, doNothing);
 app.post(/\/(api\/)?do-nothing/, doNothing);
