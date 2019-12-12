@@ -2,13 +2,12 @@ const logReceipt = require("./logReceipt");
 
 const funcArray = [
   function(req, res, next) {
-    if (
-      req.origin === req.hostname ||
-      /(https:\/\/)?(www[.])?vulnemort[.]com/.test(req.origin)
-    ) {
+    const o = req.get("origin");
+    const h = req.hostname;
+    if (o === h || /(https:\/\/)?(www[.])?vulnemort[.]com/.test(o)) {
       return next();
     }
-    const message = `standard header check failed, origin ${req.origin} vs host ${req.host}`;
+    const message = `standard header check failed, origin ${o} vs host ${h}`;
     console.log(message);
     return res.status(403).send({ error: message });
   },
