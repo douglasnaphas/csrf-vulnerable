@@ -143,6 +143,31 @@ function App() {
                     }
                   </TableCell>
                 </TableRow>
+                <TableRow>
+                  <TableCell>Check Content-Type is application/JSON:</TableCell>
+                  <TableCell>
+                    {
+                      new URL(
+                        "/api/noxo/csrf-check-content-type",
+                        Configs.apiUrl()
+                      )["href"]
+                    }
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>
+                    Check for a custom header (?token_valid=true simulates
+                    passing):
+                  </TableCell>
+                  <TableCell>
+                    {
+                      new URL(
+                        "/api/noxo/csrf-check-token-header",
+                        Configs.apiUrl()
+                      )["href"]
+                    }
+                  </TableCell>
+                </TableRow>
               </TableBody>
             </Table>
           </Paper>

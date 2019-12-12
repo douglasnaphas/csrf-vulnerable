@@ -12,6 +12,8 @@ const preflightHandler = require("./middleware/preflightHandler");
 const allowCredentials = require("./middleware/allowCredentials");
 const allowHeaders = require("./middleware/allowHeaders");
 const checkStdHdrs = require("./middleware/checkStdHdrs");
+const CSRFCheckTokenHeader = require("./middleware/CSRFCheckTokenHeader");
+const CSRFCheckContentType = require("./middleware/CSRFCheckContentType");
 
 var app = express();
 
@@ -42,6 +44,10 @@ app.post(/\/(api\/)?do-nothing/, doNothing);
 
 app.get(/\/api\/noxo\/check-std-hdrs/, checkStdHdrs);
 app.post(/\/api\/noxo\/check-std-hdrs/, checkStdHdrs);
+
+app.post(/\/api\/noxo\/csrf-check-token-header/, CSRFCheckTokenHeader);
+
+app.post(/\/api\/noxo\/csrf-check-content-type/, CSRFCheckContentType);
 
 app.get(/\/(api\/)?csrf-cookie/, getCSRFCookie);
 
