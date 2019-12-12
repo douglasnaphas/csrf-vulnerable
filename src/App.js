@@ -133,6 +133,16 @@ function App() {
                     {new URL("/api/noxo/do-nothing", Configs.apiUrl())["href"]}
                   </TableCell>
                 </TableRow>
+                <TableRow>
+                  <TableCell>Check standard headers:</TableCell>
+                  <TableCell>
+                    {
+                      new URL("/api/noxo/check-std-hdrs", Configs.apiUrl())[
+                        "href"
+                      ]
+                    }
+                  </TableCell>
+                </TableRow>
               </TableBody>
             </Table>
           </Paper>

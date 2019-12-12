@@ -8,7 +8,9 @@ const funcArray = [
     ) {
       return next();
     }
-    return res.status(403).send({ error: "standard header check failed" });
+    const message = `standard header check failed, origin ${req.origin} vs host ${req.host}`;
+    console.log(message);
+    return res.status(403).send({ error: message });
   },
   logReceipt,
   (req, res, next) => res.send({ Output: "request accepted" })
